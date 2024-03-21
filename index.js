@@ -7,6 +7,8 @@ app.use(express.urlencoded({extended: false}))
 const conn = require('./db/conn')
 conn()
 
+Produto.create({nome:'Pizza', preco: 39.2})
+
 const routes = require('./routes/routes')
 app.use('/', routes)
 
