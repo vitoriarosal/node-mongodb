@@ -9,7 +9,7 @@ try{
 
 
 } catch (error) {
-    console.log('Erro:'+ error); N   
+    console.log('Erro:'+ error); 
 
 }
 
