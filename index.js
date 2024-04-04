@@ -10,6 +10,7 @@ conn()
 const routes = require('./routes/routes')
 app.use('/', routes)
 
+
 app.listen(3000, function(){
     console.log('Server UP port 3000')
 })
