@@ -1,15 +1,25 @@
 const Produto = require("../models/Produto");
-
+const { json } = require ("express")
 const ProdutoController = {
     getAll: async (req, res) => {
-        try {
-            const produtos = await Produto.find();
-            res.json(produtos);
-        } catch (error) {
-            res.status(500).json({ error: 'Erro ao buscar produtos' });
+        
+        const filtros = {}
+        const campos = Object.keys(Produto.schema.paths)
+
+        for(let campo in req.query){
+            if(campos.includes(campo)){
+
+                filtros[campo]={$regex: new RegExp(req.query[campo], 'i') }
+            }
+            
+            res.json(await Produto.find(filtros))
+
         }
+        
+
+
     },
-    get: async (req, res) => {
+    get: async (req, res) => { 
         try {
             const produto = await Produto.findById(req.params.id);
             if (!produto) {
